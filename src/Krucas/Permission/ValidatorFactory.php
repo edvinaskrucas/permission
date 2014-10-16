@@ -1,4 +1,4 @@
-<?php namespace Krucas\Permissions;
+<?php namespace Krucas\Permission;
 
 class ValidatorFactory implements ValidatorFactoryInterface
 {
@@ -6,7 +6,7 @@ class ValidatorFactory implements ValidatorFactoryInterface
      * Create validator from given class.
      *
      * @param string $class Class name to create.
-     * @return \Krucas\Permissions\ValidatorInterface
+     * @return \Krucas\Permission\ValidatorInterface
      */
     public function make($class)
     {

@@ -1,16 +1,16 @@
-<?php namespace Krucas\Permissions;
+<?php namespace Krucas\Permission;
 
 class Manager
 {
     /**
      * Validator resolver instance.
      *
-     * @var \Krucas\Permissions\ValidatorResolverInterface
+     * @var \Krucas\Permission\ValidatorResolverInterface
      */
     protected $validatorResolver;
 
     /**
-     * @param \Krucas\Permissions\ValidatorResolverInterface $validatorResolver Validator resolver instance.
+     * @param \Krucas\Permission\ValidatorResolverInterface $validatorResolver Validator resolver instance.
      */
     public function __construct(ValidatorResolverInterface $validatorResolver)
     {
@@ -20,7 +20,7 @@ class Manager
     /**
      * Return used validator resolver.
      *
-     * @return \Krucas\Permissions\ValidatorResolverInterface
+     * @return \Krucas\Permission\ValidatorResolverInterface
      */
     public function getValidatorResolver()
     {
@@ -43,7 +43,7 @@ class Manager
      * Resolve permission validator.
      *
      * @param string $permission Permission name.
-     * @return \Krucas\Permissions\ValidatorInterface
+     * @return \Krucas\Permission\ValidatorInterface
      */
     public function getValidator($permission)
     {
