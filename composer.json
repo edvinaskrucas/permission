@@ -1,0 +1,13 @@
+{
+    "authors": [
+        {
+            "name": "Edvinas Kručas",
+            "email": "edv.krucas@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-0": {
+            "Krucas\\Permissions": "src/"
+        }
+    }
+}
