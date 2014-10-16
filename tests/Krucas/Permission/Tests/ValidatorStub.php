@@ -7,10 +7,10 @@ class ValidatorStub implements ValidatorInterface
     /**
      * Validate permission with given params.
      *
-     * @param array $params Params to check with.
+     * @param mixed $params Params to check with.
      * @return bool
      */
-    public function validate(array $params = array())
+    public function validate($params = null)
     {
         // TODO: Implement validate() method.
     }

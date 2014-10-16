@@ -31,10 +31,10 @@ class Manager
      * Check permission status.
      *
      * @param string $permission To check.
-     * @param array $params Permission check params.
+     * @param mixed $params Permission check params.
      * @return bool
      */
-    public function can($permission, array $params = array())
+    public function can($permission, $params = null)
     {
         return $this->getValidator($permission)->validate($params);
     }
