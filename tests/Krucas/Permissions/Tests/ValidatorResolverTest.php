@@ -29,9 +29,30 @@ class ValidatorResolverTest extends \PHPUnit_Framework_TestCase
         $validator = m::mock('Krucas\Permissions\ValidatorInterface');
 
         $factory = m::mock('Krucas\Permissions\ValidatorFactoryInterface');
-        $factory->shouldReceive('make')->once()->with('User\Edit')->andReturn($validator);
+        $factory->shouldReceive('make')->once()->with('\User\Edit')->andReturn($validator);
 
         $resolver = new ValidatorResolver($factory);
         $this->assertEquals($validator, $resolver->resolve('user.edit'));
+    }
+
+    public function testResolveShouldPrependNamespace()
+    {
+        $factory = m::mock('Krucas\Permissions\ValidatorFactoryInterface');
+        $factory->shouldReceive('make')->once()->with('\Namespace\User\Edit');
+
+        $resolver = new ValidatorResolver($factory);
+        $resolver->registerNamespace('Namespace');
+        $resolver->resolve('user.edit');
+    }
+
+    public function testResolveShouldPrependNamespaceWithHigherPriority()
+    {
+        $factory = m::mock('Krucas\Permissions\ValidatorFactoryInterface');
+        $factory->shouldReceive('make')->once()->with('\Namespace\Higher\User\Edit');
+
+        $resolver = new ValidatorResolver($factory);
+        $resolver->registerNamespace('Namespace', 0);
+        $resolver->registerNamespace('Namespace\Higher', 1);
+        $resolver->resolve('user.edit');
     }
 }
