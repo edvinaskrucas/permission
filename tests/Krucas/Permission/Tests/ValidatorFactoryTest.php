@@ -1,7 +1,7 @@
-<?php namespace Krucas\Permissions\Tests;
+<?php namespace Krucas\Permission\Tests;
 
-use Krucas\Permissions\ValidatorFactory;
-use Krucas\Permissions\ValidatorInterface;
+use Krucas\Permission\ValidatorFactory;
+use Krucas\Permission\ValidatorInterface;
 use Mockery as m;
 
 class ValidatorFactoryTest extends \PHPUnit_Framework_TestCase

@@ -1,6 +1,6 @@
-<?php namespace Krucas\Permissions\Tests;
+<?php namespace Krucas\Permission\Tests;
 
-use Krucas\Permissions\Manager;
+use Krucas\Permission\Manager;
 use Mockery as m;
 
 class ManagerTest extends \PHPUnit_Framework_TestCase
@@ -16,10 +16,10 @@ class ManagerTest extends \PHPUnit_Framework_TestCase
     {
         $params = array('obj' => new \stdClass());
 
-        $validator = m::mock('Krucas\Permissions\ValidatorInterface');
+        $validator = m::mock('Krucas\Permission\ValidatorInterface');
         $validator->shouldReceive('validate')->once()->with($params)->andReturn(true);
 
-        $resolver = m::mock('Krucas\Permissions\ValidatorResolverInterface');
+        $resolver = m::mock('Krucas\Permission\ValidatorResolverInterface');
         $resolver->shouldReceive('resolve')->once()->with('user.edit')->andReturn($validator);
 
         $manager = new Manager($resolver);

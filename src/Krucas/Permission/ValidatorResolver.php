@@ -1,11 +1,11 @@
-<?php namespace Krucas\Permissions;
+<?php namespace Krucas\Permission;
 
 class ValidatorResolver implements ValidatorResolverInterface
 {
     /**
      * Used factory implementation.
      *
-     * @var \Krucas\Permissions\ValidatorFactoryInterface
+     * @var \Krucas\Permission\ValidatorFactoryInterface
      */
     protected $validatorFactory;
 
@@ -17,7 +17,7 @@ class ValidatorResolver implements ValidatorResolverInterface
     protected $namespaces;
 
     /**
-     * @param \Krucas\Permissions\ValidatorFactoryInterface $validatorFactory Factory implementation.
+     * @param \Krucas\Permission\ValidatorFactoryInterface $validatorFactory Factory implementation.
      */
     public function __construct(ValidatorFactoryInterface $validatorFactory)
     {
@@ -28,7 +28,7 @@ class ValidatorResolver implements ValidatorResolverInterface
     /**
      * Return used factory implementation.
      *
-     * @return \Krucas\Permissions\ValidatorFactoryInterface
+     * @return \Krucas\Permission\ValidatorFactoryInterface
      */
     public function getValidatorFactory()
     {
@@ -61,7 +61,7 @@ class ValidatorResolver implements ValidatorResolverInterface
      * Resolve permission validator.
      *
      * @param string $permission Permission name.
-     * @return \Krucas\Permissions\ValidatorInterface
+     * @return \Krucas\Permission\ValidatorInterface
      */
     public function resolve($permission)
     {

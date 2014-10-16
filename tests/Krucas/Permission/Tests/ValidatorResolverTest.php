@@ -1,6 +1,6 @@
-<?php namespace Krucas\Permissions\Tests;
+<?php namespace Krucas\Permission\Tests;
 
-use Krucas\Permissions\ValidatorResolver;
+use Krucas\Permission\ValidatorResolver;
 use Mockery as m;
 
 class ValidatorResolverTest extends \PHPUnit_Framework_TestCase
@@ -17,7 +17,7 @@ class ValidatorResolverTest extends \PHPUnit_Framework_TestCase
      */
     public function testResolveShouldThrowExceptionOnEmptyPermission()
     {
-        $factory = m::mock('Krucas\Permissions\ValidatorFactoryInterface');
+        $factory = m::mock('Krucas\Permission\ValidatorFactoryInterface');
         $factory->shouldReceive('make')->never();
 
         $resolver = new ValidatorResolver($factory);
@@ -26,9 +26,9 @@ class ValidatorResolverTest extends \PHPUnit_Framework_TestCase
 
     public function testResolveShouldReturnValidatorObject()
     {
-        $validator = m::mock('Krucas\Permissions\ValidatorInterface');
+        $validator = m::mock('Krucas\Permission\ValidatorInterface');
 
-        $factory = m::mock('Krucas\Permissions\ValidatorFactoryInterface');
+        $factory = m::mock('Krucas\Permission\ValidatorFactoryInterface');
         $factory->shouldReceive('make')->once()->with('\User\Edit')->andReturn($validator);
 
         $resolver = new ValidatorResolver($factory);
@@ -37,7 +37,7 @@ class ValidatorResolverTest extends \PHPUnit_Framework_TestCase
 
     public function testResolveShouldPrependNamespace()
     {
-        $factory = m::mock('Krucas\Permissions\ValidatorFactoryInterface');
+        $factory = m::mock('Krucas\Permission\ValidatorFactoryInterface');
         $factory->shouldReceive('make')->once()->with('\Namespace\User\Edit');
 
         $resolver = new ValidatorResolver($factory);
@@ -47,7 +47,7 @@ class ValidatorResolverTest extends \PHPUnit_Framework_TestCase
 
     public function testResolveShouldPrependNamespaceWithHigherPriority()
     {
-        $factory = m::mock('Krucas\Permissions\ValidatorFactoryInterface');
+        $factory = m::mock('Krucas\Permission\ValidatorFactoryInterface');
         $factory->shouldReceive('make')->once()->with('\Namespace\Higher\User\Edit');
 
         $resolver = new ValidatorResolver($factory);

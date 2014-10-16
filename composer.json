@@ -1,6 +1,6 @@
 {
-    "name": "edvinaskrucas/permissions",
-    "keywords": ["laravel", "permissions"],
+    "name": "edvinaskrucas/permission",
+    "keywords": ["laravel", "permission"],
     "description": "Library to check permissions for things.",
     "authors": [
         {
@@ -14,12 +14,14 @@
     },
     "require-dev": {
         "phpunit/phpunit": "4.3.*",
-        "mockery/mockery": "0.9.*"
+        "mockery/mockery": "0.9.*",
+        "illuminate/support": "4.*",
+        "illuminate/container": "4.*"
     },
     "autoload": {
         "psr-0": {
-            "Krucas\\Permissions": "src/",
-            "Krucas\\Permissions\\Tests": "tests/"
+            "Krucas\\Permission": "src/",
+            "Krucas\\Permission\\Tests": "tests/"
         }
     }
 }

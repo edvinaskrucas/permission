@@ -1,4 +1,4 @@
-<?php namespace Krucas\Permissions;
+<?php namespace Krucas\Permission;
 
 class ValidatorFactory implements ValidatorFactoryInterface
 {
@@ -6,7 +6,7 @@ class ValidatorFactory implements ValidatorFactoryInterface
      * Create validator from given class.
      *
      * @param string $class Class name to create.
-     * @return \Krucas\Permissions\ValidatorInterface
+     * @return \Krucas\Permission\ValidatorInterface
      */
     public function make($class)
     {
@@ -14,12 +14,23 @@ class ValidatorFactory implements ValidatorFactoryInterface
             throw new \InvalidArgumentException('Failed to resolve validator for empty class!');
         }
 
-        $validator = new $class();
+        $validator = $this->instantiateClass($class);
 
         if ($validator instanceof ValidatorInterface) {
             return $validator;
         }
 
         throw new \InvalidArgumentException('Resolved class [' . get_class($validator) . '] is not validator!');
+    }
+
+    /**
+     * Instantiate new object of given class.
+     *
+     * @param string $class Class to instantiate.
+     * @return \object
+     */
+    protected function instantiateClass($class)
+    {
+        return new $class();
     }
 }

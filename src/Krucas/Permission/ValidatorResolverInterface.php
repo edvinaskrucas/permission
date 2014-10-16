@@ -1,4 +1,4 @@
-<?php namespace Krucas\Permissions;
+<?php namespace Krucas\Permission;
 
 interface ValidatorResolverInterface
 {
@@ -6,7 +6,7 @@ interface ValidatorResolverInterface
      * Resolve permission validator.
      *
      * @param string $permission Permission name.
-     * @return \Krucas\Permissions\ValidatorInterface
+     * @return \Krucas\Permission\ValidatorInterface
      */
     public function resolve($permission);
 }
