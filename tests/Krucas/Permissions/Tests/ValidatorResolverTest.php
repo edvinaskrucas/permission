@@ -1,6 +1,5 @@
 <?php namespace Krucas\Permissions\Tests;
 
-use Krucas\Permissions\ValidatorInterface;
 use Krucas\Permissions\ValidatorResolver;
 use Mockery as m;
 
@@ -14,30 +13,25 @@ class ValidatorResolverTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * expectedException \InvalidArgumentException
+     * @expectedException \InvalidArgumentException
      */
     public function testResolveShouldThrowExceptionOnEmptyPermission()
     {
-//        $resolver = new ValidatorResolver();
-//        $resolver->resolve('');
+        $factory = m::mock('Krucas\Permissions\ValidatorFactoryInterface');
+        $factory->shouldReceive('make')->never();
+
+        $resolver = new ValidatorResolver($factory);
+        $resolver->resolve('');
     }
 
     public function testResolveShouldReturnValidatorObject()
     {
-//        class_alias('Krucas\Permissions\Tests\ValidatorStub', 'User\Edit');
-//
-//        $resolver = new ValidatorResolver();
-//        $this->assertTrue($resolver->resolve('user.edit') instanceof ValidatorInterface);
-    }
+        $validator = m::mock('Krucas\Permissions\ValidatorInterface');
 
-    /**
-     * expectedException \InvalidArgumentException
-     */
-    public function testResolveShouldThrowExceptionOnNonValidatorInterface()
-    {
-//        class_alias('Krucas\Permissions\Tests\NonValidatorStub', 'User\Delete');
-//
-//        $resolver = new ValidatorResolver();
-//        $resolver->resolve('user.delete');
+        $factory = m::mock('Krucas\Permissions\ValidatorFactoryInterface');
+        $factory->shouldReceive('make')->once()->with('User\Edit')->andReturn($validator);
+
+        $resolver = new ValidatorResolver($factory);
+        $this->assertEquals($validator, $resolver->resolve('user.edit'));
     }
 }
