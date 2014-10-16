@@ -5,6 +5,9 @@
             "email": "edv.krucas@gmail.com"
         }
     ],
+    "require-dev": {
+        "mockery/mockery": "0.9.*"
+    },
     "autoload": {
         "psr-0": {
             "Krucas\\Permissions": "src/"
