@@ -17,7 +17,7 @@ class ValidatorResolverTest extends \PHPUnit_Framework_TestCase
      */
     public function testResolveShouldThrowExceptionOnEmptyPermission()
     {
-        $factory = m::mock('Krucas\Permission\ValidatorFactoryInterface');
+        $factory = m::mock('Krucas\Permission\Factory\ValidatorFactoryInterface');
         $factory->shouldReceive('make')->never();
 
         $resolver = new ValidatorResolver($factory);
@@ -28,7 +28,7 @@ class ValidatorResolverTest extends \PHPUnit_Framework_TestCase
     {
         $validator = m::mock('Krucas\Permission\ValidatorInterface');
 
-        $factory = m::mock('Krucas\Permission\ValidatorFactoryInterface');
+        $factory = m::mock('Krucas\Permission\Factory\ValidatorFactoryInterface');
         $factory->shouldReceive('make')->once()->with('\User\Edit')->andReturn($validator);
 
         $resolver = new ValidatorResolver($factory);
@@ -37,7 +37,7 @@ class ValidatorResolverTest extends \PHPUnit_Framework_TestCase
 
     public function testResolveShouldPrependNamespace()
     {
-        $factory = m::mock('Krucas\Permission\ValidatorFactoryInterface');
+        $factory = m::mock('Krucas\Permission\Factory\ValidatorFactoryInterface');
         $factory->shouldReceive('make')->once()->with('\Namespace\User\Edit');
 
         $resolver = new ValidatorResolver($factory);
@@ -47,7 +47,7 @@ class ValidatorResolverTest extends \PHPUnit_Framework_TestCase
 
     public function testResolveShouldPrependNamespaceWithHigherPriority()
     {
-        $factory = m::mock('Krucas\Permission\ValidatorFactoryInterface');
+        $factory = m::mock('Krucas\Permission\Factory\ValidatorFactoryInterface');
         $factory->shouldReceive('make')->once()->with('\Namespace\Higher\User\Edit');
 
         $resolver = new ValidatorResolver($factory);

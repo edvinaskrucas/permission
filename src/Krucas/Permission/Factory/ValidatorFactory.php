@@ -1,4 +1,6 @@
-<?php namespace Krucas\Permission;
+<?php namespace Krucas\Permission\Factory;
+
+use Krucas\Permission\ValidatorInterface;
 
 class ValidatorFactory implements ValidatorFactoryInterface
 {
