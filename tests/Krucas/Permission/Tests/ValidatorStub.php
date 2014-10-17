@@ -1,6 +1,6 @@
 <?php namespace Krucas\Permission\Tests;
 
-use Krucas\Permission\ValidatorInterface;
+use Krucas\Permission\Validator\ValidatorInterface;
 
 class ValidatorStub implements ValidatorInterface
 {

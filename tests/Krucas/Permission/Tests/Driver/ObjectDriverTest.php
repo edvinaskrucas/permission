@@ -26,7 +26,7 @@ class ObjectDriverTest extends \PHPUnit_Framework_TestCase
 
     public function testResolveShouldReturnValidatorObject()
     {
-        $validator = m::mock('Krucas\Permission\ValidatorInterface');
+        $validator = m::mock('Krucas\Permission\Validator\ValidatorInterface');
 
         $factory = m::mock('Krucas\Permission\Factory\ValidatorFactoryInterface');
         $factory->shouldReceive('make')->once()->with('\User\Edit')->andReturn($validator);

@@ -45,7 +45,7 @@ class Manager
      * Resolve permission validator.
      *
      * @param string $permission Permission name.
-     * @return \Krucas\Permission\ValidatorInterface
+     * @return \Krucas\Permission\Validator\ValidatorInterface
      */
     public function getValidator($permission)
     {
