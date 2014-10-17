@@ -1,30 +1,32 @@
 <?php namespace Krucas\Permission;
 
+use Krucas\Permission\Driver\DriverInterface;
+
 class Manager
 {
     /**
-     * Validator resolver instance.
+     * Driver instance.
      *
-     * @var \Krucas\Permission\ValidatorResolverInterface
+     * @var \Krucas\Permission\Driver\DriverInterface
      */
-    protected $validatorResolver;
+    protected $driver;
 
     /**
-     * @param \Krucas\Permission\ValidatorResolverInterface $validatorResolver Validator resolver instance.
+     * @param \Krucas\Permission\Driver\DriverInterface $driver Driver instance.
      */
-    public function __construct(ValidatorResolverInterface $validatorResolver)
+    public function __construct(DriverInterface $driver)
     {
-        $this->validatorResolver = $validatorResolver;
+        $this->driver = $driver;
     }
 
     /**
-     * Return used validator resolver.
+     * Return used driver.
      *
-     * @return \Krucas\Permission\ValidatorResolverInterface
+     * @return \Krucas\Permission\Driver\DriverInterface
      */
-    public function getValidatorResolver()
+    public function getDriver()
     {
-        return $this->validatorResolver;
+        return $this->driver;
     }
 
     /**
@@ -47,6 +49,6 @@ class Manager
      */
     public function getValidator($permission)
     {
-        return $this->getValidatorResolver()->resolve($permission);
+        return $this->getDriver()->getValidator($permission);
     }
 }
