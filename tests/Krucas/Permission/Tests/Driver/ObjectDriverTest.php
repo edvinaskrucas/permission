@@ -1,9 +1,9 @@
-<?php namespace Krucas\Permission\Tests;
+<?php namespace Krucas\Permission\Tests\Driver;
 
-use Krucas\Permission\ValidatorResolver;
+use Krucas\Permission\Driver\ObjectDriver;
 use Mockery as m;
 
-class ValidatorResolverTest extends \PHPUnit_Framework_TestCase
+class ObjectDriverTest extends \PHPUnit_Framework_TestCase
 {
     public function tearDown()
     {
@@ -17,42 +17,42 @@ class ValidatorResolverTest extends \PHPUnit_Framework_TestCase
      */
     public function testResolveShouldThrowExceptionOnEmptyPermission()
     {
-        $factory = m::mock('Krucas\Permission\ValidatorFactoryInterface');
+        $factory = m::mock('Krucas\Permission\Factory\ValidatorFactoryInterface');
         $factory->shouldReceive('make')->never();
 
-        $resolver = new ValidatorResolver($factory);
-        $resolver->resolve('');
+        $resolver = new ObjectDriver($factory);
+        $resolver->getValidator('');
     }
 
     public function testResolveShouldReturnValidatorObject()
     {
         $validator = m::mock('Krucas\Permission\ValidatorInterface');
 
-        $factory = m::mock('Krucas\Permission\ValidatorFactoryInterface');
+        $factory = m::mock('Krucas\Permission\Factory\ValidatorFactoryInterface');
         $factory->shouldReceive('make')->once()->with('\User\Edit')->andReturn($validator);
 
-        $resolver = new ValidatorResolver($factory);
-        $this->assertEquals($validator, $resolver->resolve('user.edit'));
+        $resolver = new ObjectDriver($factory);
+        $this->assertEquals($validator, $resolver->getValidator('user.edit'));
     }
 
     public function testResolveShouldPrependNamespace()
     {
-        $factory = m::mock('Krucas\Permission\ValidatorFactoryInterface');
+        $factory = m::mock('Krucas\Permission\Factory\ValidatorFactoryInterface');
         $factory->shouldReceive('make')->once()->with('\Namespace\User\Edit');
 
-        $resolver = new ValidatorResolver($factory);
+        $resolver = new ObjectDriver($factory);
         $resolver->registerNamespace('Namespace');
-        $resolver->resolve('user.edit');
+        $resolver->getValidator('user.edit');
     }
 
     public function testResolveShouldPrependNamespaceWithHigherPriority()
     {
-        $factory = m::mock('Krucas\Permission\ValidatorFactoryInterface');
+        $factory = m::mock('Krucas\Permission\Factory\ValidatorFactoryInterface');
         $factory->shouldReceive('make')->once()->with('\Namespace\Higher\User\Edit');
 
-        $resolver = new ValidatorResolver($factory);
+        $resolver = new ObjectDriver($factory);
         $resolver->registerNamespace('Namespace', 0);
         $resolver->registerNamespace('Namespace\Higher', 1);
-        $resolver->resolve('user.edit');
+        $resolver->getValidator('user.edit');
     }
 }

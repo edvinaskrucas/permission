@@ -1,7 +1,7 @@
-<?php namespace Krucas\Permission\Integration\Laravel;
+<?php namespace Krucas\Permission\Integration\Laravel\Factory;
 
 use Illuminate\Container\Container;
-use Krucas\Permission\ValidatorFactory as BaseValidatorFactory;
+use Krucas\Permission\Factory\ValidatorFactory as BaseValidatorFactory;
 
 class ValidatorFactory extends BaseValidatorFactory
 {

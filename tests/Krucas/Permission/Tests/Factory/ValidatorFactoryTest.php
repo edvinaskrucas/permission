@@ -1,6 +1,6 @@
-<?php namespace Krucas\Permission\Tests;
+<?php namespace Krucas\Permission\Tests\Factory;
 
-use Krucas\Permission\ValidatorFactory;
+use Krucas\Permission\Factory\ValidatorFactory;
 use Krucas\Permission\ValidatorInterface;
 use Mockery as m;
 

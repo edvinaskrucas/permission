@@ -1,6 +1,6 @@
-<?php namespace Krucas\Permission\Tests\Integration\Laravel;
+<?php namespace Krucas\Permission\Tests\Integration\Laravel\Factory;
 
-use Krucas\Permission\Integration\Laravel\ValidatorFactory;
+use Krucas\Permission\Integration\Laravel\Factory\ValidatorFactory;
 use Mockery as m;
 
 class ValidatorFactoryTest extends \PHPUnit_Framework_TestCase

@@ -19,10 +19,10 @@ class ManagerTest extends \PHPUnit_Framework_TestCase
         $validator = m::mock('Krucas\Permission\ValidatorInterface');
         $validator->shouldReceive('validate')->once()->with($params)->andReturn(true);
 
-        $resolver = m::mock('Krucas\Permission\ValidatorResolverInterface');
-        $resolver->shouldReceive('resolve')->once()->with('user.edit')->andReturn($validator);
+        $driver = m::mock('Krucas\Permission\Driver\DriverInterface');
+        $driver->shouldReceive('getValidator')->once()->with('user.edit')->andReturn($validator);
 
-        $manager = new Manager($resolver);
+        $manager = new Manager($driver);
         $this->assertTrue($manager->can('user.edit', $params));
     }
 }
