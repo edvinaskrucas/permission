@@ -1,8 +1,8 @@
-<?php namespace Krucas\Permission;
+<?php namespace Krucas\Permission\Driver;
 
 use Krucas\Permission\Factory\ValidatorFactoryInterface;
 
-class ValidatorResolver implements ValidatorResolverInterface
+class ObjectDriver implements DriverInterface
 {
     /**
      * Used factory implementation.
@@ -60,12 +60,12 @@ class ValidatorResolver implements ValidatorResolverInterface
     }
 
     /**
-     * Resolve permission validator.
+     * Return validator for given permission.
      *
-     * @param string $permission Permission name.
+     * @param string $permission Permission name to get validator for.
      * @return \Krucas\Permission\ValidatorInterface
      */
-    public function resolve($permission)
+    public function getValidator($permission)
     {
         if (strlen($permission) <= 0) {
             throw new \InvalidArgumentException('Failed to resolve validator for empty permission!');
