@@ -6,7 +6,7 @@ interface ValidatorFactoryInterface
      * Create validator from given class.
      *
      * @param string $class Class name to create.
-     * @return \Krucas\Permission\ValidatorInterface
+     * @return \Krucas\Permission\Validator\ValidatorInterface
      */
     public function make($class);
 }

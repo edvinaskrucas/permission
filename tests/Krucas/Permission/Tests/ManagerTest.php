@@ -16,7 +16,7 @@ class ManagerTest extends \PHPUnit_Framework_TestCase
     {
         $params = array('obj' => new \stdClass());
 
-        $validator = m::mock('Krucas\Permission\ValidatorInterface');
+        $validator = m::mock('Krucas\Permission\Validator\ValidatorInterface');
         $validator->shouldReceive('validate')->once()->with($params)->andReturn(true);
 
         $driver = m::mock('Krucas\Permission\Driver\DriverInterface');
