@@ -1,8 +1,9 @@
 <?php namespace Krucas\Permission\Integration\Laravel;
 
 use Illuminate\Support\ServiceProvider;
+use Krucas\Permission\Driver\ObjectDriver;
+use Krucas\Permission\Integration\Laravel\Factory\ValidatorFactory;
 use Krucas\Permission\Manager;
-use Krucas\Permission\ValidatorResolver;
 
 class PermissionServiceProvider extends ServiceProvider
 {
@@ -30,17 +31,17 @@ class PermissionServiceProvider extends ServiceProvider
                 $factory = new ValidatorFactory();
                 $factory->setContainer($app);
 
-                $resolver = new ValidatorResolver($factory);
+                $driver = new ObjectDriver($factory);
 
                 $namespaces = $app['config']->get('permission::namespaces');
 
                 if (count($namespaces) > 0) {
                     foreach ($namespaces as $namespace => $priority) {
-                        $resolver->registerNamespace($namespace, $priority);
+                        $driver->registerNamespace($namespace, $priority);
                     }
                 }
 
-                $manager = new Manager($resolver);
+                $manager = new Manager($driver);
 
                 return $manager;
             }
